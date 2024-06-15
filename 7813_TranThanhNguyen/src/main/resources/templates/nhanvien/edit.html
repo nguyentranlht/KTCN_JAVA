@@ -9,31 +9,30 @@
 <th:block th:replace="layout::header"></th:block>
 <div class="container">
     <h2>Edit Book</h2>
-    <form th:action="@{/books/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
+    <form th:action="@{/nhanviens/edit/{id}(id=${nhanvien.id})}" th:object="${nhanvien}" method="post">
         <div class="col-6 mb-3">
-            <label for="title">Title:</label>
-            <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter title">
-            <div th:text="${#fields.hasErrors('title') ? #fields.error('title') : ''}" class="text-danger"></div>
+            <label class="form-label">Tên Nhân Viên:</label>
+            <input class="form-control" type="text" th:field="*{ten_nv}" id="ten_nv">
+            <span th:if="${#fields.hasErrors('ten_nv')}" th:errors="*{ten_nv}" class="text-danger"></span>
         </div>
         <div class="col-6 mb-3">
-            <label for="author">Author:</label>
-            <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="Enter author">
-            <div th:text="${#fields.hasErrors('author') ? #fields.error('author') : ''}" class="text-danger"></div>
+            <label class="form-label">Giới Tính:</label>
+            <input class="form-control" type="text" th:field="*{phai}" id="phai">
         </div>
         <div class="col-6 mb-3">
-            <label for="price">Price:</label>
-            <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Enter price">
-            <div th:text="${#fields.hasErrors('price') ? #fields.error('price') : ''}" class="text-danger"></div>
+            <label class="form-label">Nơi sinh:</label>
+            <input class="form-control" type="text" th:field="*{noi_sinh}" id="noi_sinh">
         </div>
         <div class="col-6 mb-3">
-            <label for="category">Category:</label>
-            <select th:field="*{category.id}" class="form-control" id="category">
+            <label class="form-label">Mã Phòng:</label>
+            <select class="form-control" id="phongban" name="phongban.id">
                 <option value="">-- Select Category --</option>
-                <option th:each="category : ${categories}"
-                        th:value="${category.id}"
-                        th:text="${category.name}"></option>
+                <option th:each="phongban : ${phongbans}" th:value="${phongban.id}" th:text="${phongban.tenphong}"></option>
             </select>
-            <div th:if="${#fields.hasErrors('category.id')}" th:errors="*{category.id}" class="text-danger"></div>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label">Lương:</label>
+            <input class="form-control" type="text" th:field="*{luong}" id="luong">
         </div>
         <button type="submit" class="btn btn-primary">Update Book</button>
         <a th:href="@{/books}" class="btn btn-link">Cancel</a>

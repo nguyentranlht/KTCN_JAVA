@@ -28,7 +28,7 @@
       <td th:text="${nhanvien.phongban.tenphong}"></td>
       <td th:text="${nhanvien.luong}"></td>
       <td sec:authorize="hasAnyAuthority('ADMIN')">
-        <a th:href="@{/nhanviens/edit/{}(id=${nhanvien.id})}">Edit</a> |
+        <a th:href="@{/nhanviens/edit/{id}(id=${nhanvien.id})}">Edit</a> |
         <a th:href="@{/nhanviens/delete/{id}(id=${nhanvien.id})}" onclick="return confirm('Are you sure?')">Delete</a>
       </td>
     </tr>
