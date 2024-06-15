@@ -1,5 +1,7 @@
 package com.example.__TranThanhNguyen.entity;
 
+import com.example.__TranThanhNguyen.validator.annotation.ValidUserId;
+import com.example.__TranThanhNguyen.validator.annotation.ValidatorPhongBanId;
 import jakarta.persistence.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -32,6 +34,11 @@ public class NHANVIEN {
 
     @ManyToOne
     @JoinColumn(name = "phong_id", referencedColumnName = "id")
-//    @ValidatorCategoryId
+    @ValidatorPhongBanId
     private PHONGBAN phongban;
+
+    @ManyToOne
+    @JoinColumn(name = "user", referencedColumnName = "id")
+    @ValidUserId
+    private User user;
 }
