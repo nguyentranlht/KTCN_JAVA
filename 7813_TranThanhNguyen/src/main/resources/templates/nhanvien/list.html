@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <title>My Book List</title>
+  <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1 th:text="${title}"></h1>
+  <table class="table">
+    <tr>
+      <th>Mã Nhân Viên</th>
+      <th>Tên nhân viên</th>
+      <th>Giới tính</th>
+      <th>Nơi sinh</th>
+      <th>Tên phòng</th>
+      <th>Lương</th>
+      <th sec:authorize="hasAnyAuthority('ADMIN')">Action</th>
+    </tr>
+    <tr th:each="nhanvien : ${nhanviens}">
+      <td th:text="${nhanvien.id}"></td>
+      <td th:text="${nhanvien.ten_nv}"></td>
+      <td th:text="${nhanvien.phai}"></td>
+      <td th:text="${nhanvien.noi_sinh}"></td>
+      <td th:text="${nhanvien.phongban.tenphong}"></td>
+      <td th:text="${nhanvien.luong}"></td>
+      <td sec:authorize="hasAnyAuthority('ADMIN')">
+        <a th:href="@{/nhanviens/edit/{}(id=${nhanvien.id})}">Edit</a> |
+        <a th:href="@{/nhanviens/delete/{id}(id=${nhanvien.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+  </table>
+</div>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script th:inline="javascript">
+  function deleteBook(link) {
+      if (confirm('Are you sure?')) {
+          $.ajax({
+              url: $(link).attr('href'),
+              type: 'DELETE',
+              success: function(result) {
+                  if (!result.success) {
+                      alert(result.message);
+                  } else {
+                      $(link).parent().parent().remove();
+                  }
+              }
+          });
+      }
+  }
+</script>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
