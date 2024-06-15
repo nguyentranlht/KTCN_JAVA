@@ -60,7 +60,7 @@ public class NhanVienController {
             return "nhanvien/edit";
         }
         nhanVienService.updateNHANVIEN(nhanvien);
-        return "redirect:/nhanviens";
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")

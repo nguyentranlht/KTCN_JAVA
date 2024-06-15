@@ -30,8 +30,8 @@ public class NhanVienService {
         nhanVienRepository.deleteById(id);
     }
 
-    public void updateNHANVIEN(NHANVIEN book) {
-        nhanVienRepository.save(book);
+    public void updateNHANVIEN(NHANVIEN nhanvien) {
+        nhanVienRepository.save(nhanvien);
     }
 }
 

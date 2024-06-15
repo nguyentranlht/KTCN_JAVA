@@ -23,7 +23,10 @@
     <tr th:each="nhanvien : ${nhanviens}">
       <td th:text="${nhanvien.id}"></td>
       <td th:text="${nhanvien.ten_nv}"></td>
-      <td th:text="${nhanvien.phai}"></td>
+      <td>
+        <img th:if="${nhanvien.phai} == 'NAM'" th:src="@{/img/man.jpg}" alt="Nam" width="50" height="50"/>
+        <img th:if="${nhanvien.phai} == 'NU'" th:src="@{/img/woman.jpg}" alt="Nữ" width="50" height="50"/>
+      </td>
       <td th:text="${nhanvien.noi_sinh}"></td>
       <td th:text="${nhanvien.phongban.tenphong}"></td>
       <td th:text="${nhanvien.luong}"></td>
