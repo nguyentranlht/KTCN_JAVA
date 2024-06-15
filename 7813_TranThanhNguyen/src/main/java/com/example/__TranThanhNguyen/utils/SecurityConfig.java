@@ -40,9 +40,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/css/**", "/js/**", "/", "/register", "/error")
                         .permitAll()
-                        .requestMatchers( "/nhanviens/edit", "/nhanviens/delete")
+                        .requestMatchers( "/nhanviens/edit", "/nhanviens/delete", "/nhanviens/add")
                         .hasAnyAuthority("ADMIN")
-                        .requestMatchers("/nhanviens", "/nhanviens/add")
+                        .requestMatchers("/nhanviens")
                         .hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/api/**")
                         .hasAnyAuthority("ADMIN", "USER")

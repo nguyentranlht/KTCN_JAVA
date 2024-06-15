@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/nhanviens">List Nhan Vien</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/nhanviens/add">Add Nhan Vien</a>
+                        <a class="nav-link" href="/nhanviens/add" sec:authorize="hasAnyAuthority('ADMIN')">Add Nhan Vien</a>
                     </li>
                     <li sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" method="post">
